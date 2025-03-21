@@ -15,7 +15,7 @@ namespace RateLimiter.Extensions
 {
   public static class HttpContextExtension
   {
-    public static string GetCustomerKey(this HttpContext context)
+    public static string GetKey(this HttpContext context)
         => $"{context.Request.Path}_{context.Connection.RemoteIpAddress}";
 
     public static bool HasRateLimitAttribute(this HttpContext context, out RateLimitAttribute? rateLimitAttribute)

@@ -42,7 +42,7 @@ namespace RateLimiter.Middleware
         consumptionData.IncreaseRequests(decorator!.MaxRequests);
       }
 
-      await _distributedCache.SetCacheValueAsync(context.GetCustomerKey(), consumptionData);
+      await _distributedCache.SetCacheValueAsync(context.GetKey(), consumptionData);
 
       await _next(context);
     }

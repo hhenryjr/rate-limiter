@@ -14,7 +14,7 @@ namespace RateLimiter.Extensions
   {
     public async static Task<ConsumptionData?> GetCustomerConsumptionDataFromContextAsync(this IDistributedCache cache, HttpContext context, CancellationToken cancellation = default)
     {
-      var result = await cache.GetStringAsync(context.GetCustomerKey(), cancellation);
+      var result = await cache.GetStringAsync(context.GetKey(), cancellation);
       if (result is null)
         return null;
 

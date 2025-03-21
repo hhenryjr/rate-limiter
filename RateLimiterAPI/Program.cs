@@ -14,8 +14,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDistributedMemoryCache();
 
-builder.Services.AddSingleton(new TokenBucket(maxNumberOfTokens: 2, refillRateInMilliseconds: 1000));
-//});
+builder.Services.AddSingleton(new TokenBucket(maxNumberOfTokens: 5, refillRateInMilliseconds: 10000));
 
 var app = builder.Build();
 
@@ -26,8 +25,8 @@ if (app.Environment.IsDevelopment())
   app.UseSwaggerUI();
 }
 
-//app.UseMiddleware<TokenBucketMiddleware>();
-app.UseMiddleware<FixedWindowMiddleware>();
+app.UseMiddleware<TokenBucketMiddleware>()
+  .UseMiddleware<FixedWindowMiddleware>();
 
 app.UseHttpsRedirection();
 
